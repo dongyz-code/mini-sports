@@ -1,0 +1,16 @@
+{
+  "extends": ["taro/react", "prettier"],
+  "parser": "@typescript-eslint/parser",
+  "plugins": [
+    "react",
+    "jsx-a11y",
+    "prettier",
+    "@typescript-eslint"
+  ],
+  "rules": {
+    "prettier/prettier": "error",
+    "react/jsx-uses-react": "off",
+    "react/react-in-jsx-scope": "off",
+    "quotes": ["error", "single"]
+  }
+}
