@@ -1,3 +1,3 @@
 export default definePageConfig({
-  navigationBarTitleText: '闪动'
-})
+  navigationBarTitleText: '闪动',
+});

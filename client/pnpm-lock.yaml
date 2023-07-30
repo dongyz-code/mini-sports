@@ -50,6 +50,9 @@ dependencies:
   '@tarojs/taro':
     specifier: 3.6.11
     version: 3.6.11(@types/react@18.0.0)(postcss@8.4.18)
+  classnames:
+    specifier: ^2.3.2
+    version: 2.3.2
   react:
     specifier: ^18.0.0
     version: 18.0.0
