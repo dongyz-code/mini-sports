@@ -1,6 +1,5 @@
-import { useState } from 'react';
 import { View, Text, Image } from '@tarojs/components';
-import classNames from 'classnames';
+// import classNames from 'classnames';
 import css from './index.module.scss';
 
 interface ActiveCardProps {

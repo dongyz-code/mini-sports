@@ -1,0 +1,74 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id       Int      @id @default(autoincrement())
+  username String?
+  email    String   @unique
+  phone    String   @db.VarChar(64)
+  weixin   String   @db.VarChar(64)
+  level    Int
+  height   Int
+  weight   Int
+  avator   String   @db.VarChar(255)
+  gender   gender
+  Active   Active[]
+}
+
+model Active {
+  id             Int             @id @default(autoincrement())
+  avator         String          @db.VarChar(255)
+  title          String          @db.VarChar(255) //标题
+  organizerType  Int             @db.SmallInt // 组织者类型
+  ActiveAddress  ActiveAddress[]
+  venueNumber    Int //场地号
+  startTime      DateTime
+  endTime        DateTime
+  date           DateTime
+  cancelDeadline Int
+  desc           String          @db.Text
+  picture        String          @db.Text
+  applyNumbers   Int
+  applyFare      Int
+  chargeType     Int
+  ladyDiscount   Boolean
+  ladyLevel      Int
+  manLevel       Int
+  phone          String          @db.VarChar(64)
+  weixin         String          @db.VarChar(64)
+  withPeople     Boolean         @default(false)
+  autoCancle     Boolean         @default(false)
+  dateLimit      Int
+  numbersLimit   Int
+  createTime     DateTime        @default(now())
+  updateTime     DateTime        @updatedAt
+  Organizer      User?           @relation(fields: [organizerId], references: [id])
+  organizerId    Int?
+}
+
+model ActiveAddress {
+  id        Int    @id @default(autoincrement())
+  activeId  Int    @unique
+  active    Active @relation(fields: [activeId], references: [id])
+  name      String
+  latitude  Int
+  longitude Int
+  address   String
+  province  String
+  city      String
+  district  String
+}
+
+enum gender {
+  F
+  M
+}
