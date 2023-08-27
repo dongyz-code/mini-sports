@@ -16,11 +16,11 @@ model User {
   email    String   @unique
   phone    String   @db.VarChar(64)
   weixin   String   @db.VarChar(64)
-  level    Int
-  height   Int
-  weight   Int
-  avator   String   @db.VarChar(255)
-  gender   gender
+  level    Int?
+  height   Int?
+  weight   Int?
+  avator   String?  @db.VarChar(255)
+  gender   gender?
   Active   Active[]
 }
 
@@ -29,7 +29,7 @@ model Active {
   avator         String          @db.VarChar(255)
   title          String          @db.VarChar(255) //标题
   organizerType  Int             @db.SmallInt // 组织者类型
-  ActiveAddress  ActiveAddress[]
+  ActiveAddress  ActiveAddress?
   venueNumber    Int //场地号
   startTime      DateTime
   endTime        DateTime
@@ -40,15 +40,15 @@ model Active {
   applyNumbers   Int
   applyFare      Int
   chargeType     Int
-  ladyDiscount   Boolean
-  ladyLevel      Int
-  manLevel       Int
+  ladyDiscount   Boolean         @default(false)
+  ladyLevel      Int?
+  manLevel       Int?
   phone          String          @db.VarChar(64)
   weixin         String          @db.VarChar(64)
   withPeople     Boolean         @default(false)
   autoCancle     Boolean         @default(false)
-  dateLimit      Int
-  numbersLimit   Int
+  dateLimit      Int?
+  numbersLimit   Int?
   createTime     DateTime        @default(now())
   updateTime     DateTime        @updatedAt
   Organizer      User?           @relation(fields: [organizerId], references: [id])
