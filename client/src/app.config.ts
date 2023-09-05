@@ -1,3 +1,5 @@
+import { useGlobalIconFont as usingGlobalIconFont } from './components/iconfont/helper';
+
 export default defineAppConfig({
   pages: ['pages/index/index', 'pages/create_active/index', 'pages/my/index'],
   window: {
@@ -17,4 +19,5 @@ export default defineAppConfig({
       { pagePath: 'pages/my/index', text: '我的' },
     ],
   },
+  usingComponents: Object.assign(usingGlobalIconFont()),
 });

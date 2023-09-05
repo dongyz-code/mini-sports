@@ -16,8 +16,10 @@ export default function Index() {
     console.log('Page loaded.');
   });
 
+  console.log('css', css);
+
   return (
-    <View className={css.index}>
+    <View className={css['home']}>
       {/* 轮播模块 */}
       <View>
         <Swiper className="test-h" indicatorColor="#999" indicatorActiveColor="#333" circular indicatorDots autoplay>
