@@ -16,8 +16,6 @@ export default function Index() {
     console.log('Page loaded.');
   });
 
-  console.log('css', css);
-
   return (
     <View className={css['home']}>
       {/* 轮播模块 */}
