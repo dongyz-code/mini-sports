@@ -1,4 +1,22 @@
 page {
-  --color-white: #FFFFFF;
-  --color-border-base: rgba(0, 0, 0, 0.1)
+  // 基础背景色
+  --color-bg-base: #ffffff;
+  --color-primary: #1677ff;
+  --color-error: 	#ff4d4f;
+  --color-info: #1677ff;
+  --color-link: #1677ff;
+  --color-success: 	#52c41a;
+  --color-warning: #faad14;
+  --color-text-base: #03060B;
+  // 不随主题色变化的白色
+  --color-white: #ffffff;
+  // 控制文本描述字体颜色。
+  --color-text-description: rgba(0, 0, 0, 0.45);
+  // 基础边框色
+  --color-border-base: rgba(0, 0, 0, 0.1);
+  // 阴影
+  --box-shadow: 0 6px 16px 0 rgba(0, 0, 0, 0.08), 0 3px 6px -4px rgba(0, 0, 0, 0.12), 0 9px 28px 8px rgba(0, 0, 0, 0.05);
+  // 二级阴影
+  --box-shadow-secondary: 0 6px 16px 0 rgba(0, 0, 0, 0.08), 0 3px 6px -4px rgba(0, 0, 0, 0.12),
+    0 9px 28px 8px rgba(0, 0, 0, 0.05);
 }

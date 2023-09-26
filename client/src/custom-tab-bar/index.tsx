@@ -12,6 +12,7 @@ const CustomTabBar: FC = () => {
   const changeTab = (tab: TabBar) => {
     if (!tab) return;
     if (tabBarStore.selected === tab.key) return;
+    tabBarStore.changeTab(tab.key);
     Taro.switchTab({
       url: tab.pagePath,
     });

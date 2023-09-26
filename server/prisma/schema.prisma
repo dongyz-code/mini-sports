@@ -25,33 +25,33 @@ model User {
 }
 
 model Active {
-  id             Int             @id @default(autoincrement())
-  avator         String          @db.VarChar(255)
-  title          String          @db.VarChar(255) //标题
-  organizerType  Int             @db.SmallInt // 组织者类型
+  id             Int            @id @default(autoincrement())
+  avator         String         @db.VarChar(255) // 封面
+  title          String         @db.VarChar(255) //标题
+  organizerType  Int            @db.SmallInt // 组织者类型
   ActiveAddress  ActiveAddress?
-  venueNumber    Int //场地号
-  startTime      DateTime
-  endTime        DateTime
-  date           DateTime
-  cancelDeadline Int
-  desc           String          @db.Text
-  picture        String          @db.Text
-  applyNumbers   Int
-  applyFare      Int
-  chargeType     Int
-  ladyDiscount   Boolean         @default(false)
-  ladyLevel      Int?
-  manLevel       Int?
-  phone          String          @db.VarChar(64)
-  weixin         String          @db.VarChar(64)
-  withPeople     Boolean         @default(false)
-  autoCancle     Boolean         @default(false)
-  dateLimit      Int?
-  numbersLimit   Int?
-  createTime     DateTime        @default(now())
-  updateTime     DateTime        @updatedAt
-  Organizer      User?           @relation(fields: [organizerId], references: [id])
+  venueNumber    String?        @db.VarChar(64) //场地号
+  startTime      DateTime // 活动开始时间
+  endTime        DateTime // 活动结束时间
+  date           DateTime // 活动日期
+  cancelDeadline Int? // 取消报名截止时间
+  desc           String         @db.Text
+  picture        String         @db.Text
+  applyNumbers   Int // 报名人数
+  applyFare      Int // 报名费用
+  chargeType     Int // 收费类型
+  ladyDiscount   Boolean        @default(false) // 女士优惠
+  ladyLevel      Int? // 等级男
+  manLevel       Int? // 等级女
+  phone          String         @db.VarChar(64)
+  weixin         String         @db.VarChar(64)
+  withPeople     Boolean        @default(false) // 允许带人
+  autoCancle     Boolean        @default(false) // 自动取消
+  dateLimit      Int? // 开场前？个小时
+  numbersLimit   Int? // 人数不足？个人
+  createTime     DateTime       @default(now())
+  updateTime     DateTime       @updatedAt
+  Organizer      User?          @relation(fields: [organizerId], references: [id])
   organizerId    Int?
 }
 

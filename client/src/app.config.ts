@@ -1,7 +1,7 @@
 import { useGlobalIconFont as usingGlobalIconFont } from './components/iconfont/helper';
 
 export default defineAppConfig({
-  pages: ['pages/index/index', 'pages/create_active/index', 'pages/my/index'],
+  pages: ['pages/create_active/index', 'pages/index/index', 'pages/my/index'],
   window: {
     backgroundTextStyle: 'light',
     navigationBarBackgroundColor: '#fff',

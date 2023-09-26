@@ -15,6 +15,7 @@ interface TabBarSotre {
   color: string;
   selectedColor: string;
   tabs: TabBar[];
+  changeTab: (selected: string) => void;
 }
 
 export const useTabBarSotre = create<TabBarSotre>((set) => {

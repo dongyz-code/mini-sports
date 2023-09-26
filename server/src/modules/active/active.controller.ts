@@ -1,4 +1,17 @@
-import { Controller, Get, Post, Param, Query, Body, Put, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Headers,
+  Header,
+  Get,
+  Post,
+  Param,
+  Query,
+  Body,
+  Put,
+  Delete,
+  HttpException,
+  HttpStatus,
+} from '@nestjs/common';
 import { ActiveService } from './active.service';
 import { Active as ActiveModel } from '@prisma/client';
 
@@ -13,15 +26,23 @@ export class ActiveController {
     });
   }
 
+  @Header('a', 'b')
   @Get('actives')
-  async getActives(@Query() query: any) {
+  async getActives(
+    @Query() query: Record<string, string>,
+    @Headers() header: Record<string, any>,
+    @Headers('accept-encoding') acceptEncoding: string,
+  ) {
     console.log('query', query);
+    console.log('header', header);
+    console.log('acceptEncoding', acceptEncoding);
+    throw new HttpException('Forbidden', HttpStatus.FORBIDDEN);
     return '999';
   }
 
   @Post('active')
   async createActive(@Body() body: ActiveModel) {
-    return;
+    return this.activeService.createActive(body);
   }
 
   @Put('active')
