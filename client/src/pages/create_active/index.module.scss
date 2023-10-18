@@ -6,6 +6,7 @@
   }
 
   .required {
+    margin-left: 8rpx;
     :global {
       .item-content__info-title::before {
         display: inline-block;
@@ -19,4 +20,5 @@
       }
     }
   }
+
 }

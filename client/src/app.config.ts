@@ -20,4 +20,10 @@ export default defineAppConfig({
     ],
   },
   usingComponents: Object.assign(usingGlobalIconFont()),
+  requiredPrivateInfos: ['chooseLocation', 'chooseAddress', 'choosePoi'],
+  permission: {
+    'scope.userLocation': {
+      desc: '您的位置信息将用于小程序位置接口的效果展示',
+    },
+  },
 });

@@ -1,3 +1,5 @@
+import { WexinLocation } from './address';
+
 export interface Active {
   id: number;
   /** 封面 */
@@ -6,14 +8,16 @@ export interface Active {
   title: string;
   /** 组织者类型 */
   organizerType: number;
+  /** 地址信息 */
+  activeAddress: WexinLocation;
   /** 场地号 */
   venueNumber: string;
   /** 开始时间 */
-  startTime: Date;
+  startTime: string;
   /** 结束时间 */
-  endTime: Date;
+  endTime: string;
   /** 日期 */
-  date: Date;
+  date: number[];
   /** 取消报名时间 */
   cancelDeadline: number;
   /** 简介 */

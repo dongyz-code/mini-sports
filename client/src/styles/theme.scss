@@ -2,12 +2,14 @@ page {
   // 基础背景色
   --color-bg-base: #ffffff;
   --color-primary: #1677ff;
-  --color-error: 	#ff4d4f;
+  --color-error: #ff4d4f;
   --color-info: #1677ff;
   --color-link: #1677ff;
-  --color-success: 	#52c41a;
+  --color-success: #52c41a;
   --color-warning: #faad14;
-  --color-text-base: #03060B;
+  --color-text-base: #03060b;
+  --color-gray: rgba(0, 0, 0, 30%);
+  --color-gray-2: rgba(0, 0, 0, 40%);
   // 不随主题色变化的白色
   --color-white: #ffffff;
   // 控制文本描述字体颜色。

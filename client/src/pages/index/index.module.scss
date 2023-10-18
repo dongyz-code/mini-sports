@@ -1,4 +1,16 @@
 .home {
+  .home-swiper {
+    .swiper-img-content {
+      width: 100%;
+      height: 100%;
+
+      .swiper-img {
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+
   .tabs-container {
     position: relative;
     z-index: 2;

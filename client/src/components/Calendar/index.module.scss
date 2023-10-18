@@ -1,0 +1,66 @@
+.calendar {
+  width: 100%;
+
+  .calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 15%;
+
+    .calendar-arrow-bth {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 36rpx 0;
+      width: 40rpx;
+      height: 40rpx;
+      border-radius: 50%;
+      border: 2rpx solid black;
+    }
+
+    .calendar-title {
+      font-size: 40rpx;
+    }
+  }
+
+  .calendar-body {
+    margin: 0 12rpx;
+
+    .calendar-body-date-list {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+
+    .calendar-body-date-item {
+      width: 14.2%;
+
+      text-align: center;
+
+      .calendar-body-date-item-content {
+        border-radius: 8rpx;
+        margin: 4rpx;
+        padding: 8rpx;
+
+        &.selected {
+          background-color: var(--color-primary);
+          color: white;
+        }
+
+        &.other-month {
+          background-color:transparent;
+          color: var( --color-gray);
+        }
+      }
+
+      .calendar-body-date-item-date {
+        font-size: 24rpx;
+        margin-bottom: 8rpx;
+      }
+
+      .calendar-body-date-item-day {
+        font-size: 20rpx;
+      }
+    }
+  }
+}

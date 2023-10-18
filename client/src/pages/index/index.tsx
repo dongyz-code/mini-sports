@@ -19,12 +19,12 @@ export default function Index() {
   return (
     <View className={css['home']}>
       {/* 轮播模块 */}
-      <View>
-        <Swiper className="test-h" indicatorColor="#999" indicatorActiveColor="#333" circular indicatorDots autoplay>
+      <View className={css['home-swiper']}>
+        <Swiper indicatorColor="#999" indicatorActiveColor="#333" circular indicatorDots autoplay>
           <SwiperItem>
             {homeBanners?.map((banner) => (
-              <View key={banner.key} className="demo-text-1">
-                <Image src={banner.img} />
+              <View key={banner.key} className={css['swiper-img-content']}>
+                <Image src={banner.img} className={css['swiper-img']} />
               </View>
             ))}
           </SwiperItem>
