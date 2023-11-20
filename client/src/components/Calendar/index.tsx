@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { View } from '@tarojs/components';
-import { AtIcon } from 'taro-ui';
 import dayjs, { type Dayjs } from 'dayjs';
 import classNames from 'classnames';
 import { getHeaderContent, getFirstDayOfCurrMonth, getDateList, isSameMonth } from './utils';
@@ -47,11 +46,11 @@ const Calendar: React.FC<CalendarProps> = ({ value = [], onChange, weekLabelInde
     <View className={css['calendar']}>
       <View className={css['calendar-header']}>
         <View className={css['calendar-arrow-bth']} onClick={() => changeMonth(-1)}>
-          <AtIcon value="chevron-left" size={16} />
+          {/* <AtIcon value="chevron-left" size={16} /> */}
         </View>
         <View className={css['calendar-title']}>{getHeaderContent(startDateOfMonth)}</View>
         <View className={css['calendar-arrow-bth']} onClick={() => changeMonth(1)}>
-          <AtIcon value="chevron-right" size={16} />
+          {/* <AtIcon value="chevron-right" size={16} /> */}
         </View>
       </View>
 

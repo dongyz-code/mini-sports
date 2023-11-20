@@ -6,13 +6,13 @@ import IconFont from '@/components/iconfont';
 import css from './index.module.scss';
 
 interface ImageUploadProps {
-  classname?: string;
+  className?: string;
   value?: string;
   placeholder?: string;
   onChange?: (val: string) => void;
 }
 
-const ImageUpload: FC<ImageUploadProps> = ({ classname, value, onChange, placeholder }) => {
+const ImageUpload: FC<ImageUploadProps> = ({ className, value, onChange, placeholder }) => {
   const [loading, setLoading] = useState(false);
 
   // 点击上传图片
@@ -32,7 +32,7 @@ const ImageUpload: FC<ImageUploadProps> = ({ classname, value, onChange, placeho
   };
 
   return (
-    <View className={classNames(classname, css['image-upload'])} onClick={handleClick}>
+    <View className={classNames(className, css['image-upload'])} onClick={handleClick}>
       <View>
         <View className={css['icon-content']}>
           <IconFont name="camera-solid" color="var(--color-text-description)" size={32} />

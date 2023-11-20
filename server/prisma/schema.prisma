@@ -39,7 +39,7 @@ model Active {
   picture        String         @db.Text
   applyNumbers   Int // 报名人数
   applyFare      Int // 报名费用
-  chargeType     Int // 收费类型
+  chargeType     String // 收费类型
   ladyDiscount   Boolean        @default(false) // 女士优惠
   ladyLevel      Int? // 等级男
   manLevel       Int? // 等级女

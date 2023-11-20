@@ -10,7 +10,8 @@ page {
   --color-text-base: #03060b;
   --color-gray: rgba(0, 0, 0, 30%);
   --color-gray-2: rgba(0, 0, 0, 40%);
-  // 不随主题色变化的白色
+  --color-placeholder: #545353;
+  --color-bg-gray: rgba(0, 0, 0, 0.1); // 不随主题色变化的白色
   --color-white: #ffffff;
   // 控制文本描述字体颜色。
   --color-text-description: rgba(0, 0, 0, 0.45);

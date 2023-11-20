@@ -1,0 +1,16 @@
+.select-cell {
+  display: flex;
+  justify-content: space-between;
+  padding: 0;
+
+  .select-cell-value {
+  }
+
+  .select-cell-icon {
+    flex-shrink: 0;
+  }
+}
+
+.select-calendar {
+  z-index: 10000;
+}

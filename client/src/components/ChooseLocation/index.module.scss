@@ -1,12 +1,9 @@
 .choose-location-wrap {
   display: flex;
   justify-content: space-between;
-  padding: 24rpx 0;
-  border-bottom: 1px solid #d6e4ef;
 
   .choose-label {
     position: relative;
-    margin-left: 48rpx;
 
     &.required::before {
       position: absolute;
@@ -19,16 +16,17 @@
       left: -20rpx;
     }
 
-    .location-placeholder {
-      margin-left: 40rpx;
-      color: var(--color-gray);
+    .location-title {
+      width: 420rpx;
+      white-space: nowrap;
+      overflow: hidden;
+      color: var(--color-text-base);
     }
   }
 
   .right-tip {
     display: flex;
     align-items: center;
-    margin-right: 24rpx;
 
     .tip-text {
       margin-right: 20rpx;

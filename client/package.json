@@ -39,9 +39,12 @@
   "author": "",
   "dependencies": {
     "@babel/runtime": "^7.21.5",
+    "@nutui/icons-react-taro": "^0.0.1",
+    "@nutui/nutui-react-taro": "^2.0.22",
     "@tarojs/components": "3.6.11",
     "@tarojs/helper": "3.6.11",
     "@tarojs/plugin-framework-react": "3.6.11",
+    "@tarojs/plugin-html": "^3.6.18",
     "@tarojs/plugin-platform-alipay": "3.6.11",
     "@tarojs/plugin-platform-h5": "3.6.11",
     "@tarojs/plugin-platform-jd": "3.6.11",
@@ -58,7 +61,6 @@
     "dayjs": "^1.11.10",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
-    "taro-ui": "3.1.0-beta.7",
     "zustand": "^4.3.9"
   },
   "devDependencies": {
@@ -74,6 +76,7 @@
     "@types/webpack-env": "^1.13.6",
     "@typescript-eslint/eslint-plugin": "^5.20.0",
     "@typescript-eslint/parser": "^5.20.0",
+    "babel-plugin-import": "^1.13.8",
     "babel-preset-taro": "3.6.11",
     "eslint": "^8.12.0",
     "eslint-config-prettier": "^8.9.0",

@@ -28,14 +28,16 @@ export interface Active {
   applyNumbers: number;
   /** 报名费用 */
   applyFare: number;
-  /** 标题 */
-  chargeType: number;
+  /** 收费类型 */
+  chargeType: string;
   /** 女士优惠 */
   ladyDiscount: boolean;
   /** 等级女士 */
   ladyLevel: number | null;
   /** 等级男士 */
   manLevel: number | null;
+  /** 姓名 */
+  userName: string;
   /** 电话 */
   phone: string;
   /** 微信 */
@@ -51,7 +53,7 @@ export interface Active {
   createTime: Date;
   updateTime: Date;
   /** 组织者id */
-  organizerId: number | null;
+  user_id: number | null;
 }
 
 export type CreateActive = Omit<Active, 'id'>;

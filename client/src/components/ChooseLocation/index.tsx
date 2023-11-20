@@ -7,14 +7,13 @@ import IconFont from '../iconfont';
 import css from './index.module.scss';
 
 interface ChooseLocationProps {
-  label?: string;
   required?: boolean;
   value?: WexinLocation;
   onChange?: (location: WexinLocation) => void;
   placeholder?: string;
 }
 
-const ChooseLocation: FC<ChooseLocationProps> = ({ value, onChange, label, required, placeholder }) => {
+const ChooseLocation: FC<ChooseLocationProps> = ({ value, onChange }) => {
   const chooseLocation = () => {
     Taro.chooseLocation({
       success: (res) => {
@@ -26,13 +25,8 @@ const ChooseLocation: FC<ChooseLocationProps> = ({ value, onChange, label, requi
 
   return (
     <View onClick={chooseLocation} className={classNames(css['choose-location-wrap'])}>
-      <View
-        className={classNames(css['choose-label'], {
-          [css['required']]: required,
-        })}
-      >
-        <Text>{label}</Text>
-        <Text className={css['location-placeholder']}>{value ? value.address : placeholder}</Text>
+      <View className={classNames(css['choose-label'])}>
+        {value?.address && <View className={css['location-title']}>{value?.address}</View>}
       </View>
 
       <View className={css['right-tip']}>
