@@ -17,7 +17,7 @@ export class ActiveService {
   }
 
   /** 更新活动 */
-  updateActive(params: { where: Prisma.ActiveWhereUniqueInput; data: Prisma.UserUpdateInput }): Promise<Active> {
+  updateActive(params: { where: Prisma.ActiveWhereUniqueInput; data: Prisma.ActiveUpdateInput }): Promise<Active> {
     const { where, data } = params;
     return this.prisma.active.update({
       where,

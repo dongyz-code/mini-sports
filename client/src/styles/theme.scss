@@ -1,6 +1,6 @@
 page {
   // 基础背景色
-  --color-bg-base: #ffffff;
+  --color-bg-white: #ffffff;
   --color-primary: #1677ff;
   --color-error: #ff4d4f;
   --color-info: #1677ff;
@@ -11,7 +11,11 @@ page {
   --color-gray: rgba(0, 0, 0, 30%);
   --color-gray-2: rgba(0, 0, 0, 40%);
   --color-placeholder: #545353;
-  --color-bg-gray: rgba(0, 0, 0, 0.1); // 不随主题色变化的白色
+  --color-bg-gray: rgba(0, 0, 0, 0.1);
+  --color-mask: rgba(255, 255, 255, 0.5);
+  --color-bg-mask: rgba(0, 0, 0, 0.7);
+
+  // 不随主题色变化的白色
   --color-white: #ffffff;
   // 控制文本描述字体颜色。
   --color-text-description: rgba(0, 0, 0, 0.45);

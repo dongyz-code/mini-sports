@@ -6,8 +6,8 @@ interface ActiveCardProps {
   cover: string;
   title: string;
   address: string;
-  startTime: number;
-  endTime: number;
+  active_start_time: number;
+  active_end_time: number;
 }
 
 export default function ActiveCard({ cover }: ActiveCardProps) {

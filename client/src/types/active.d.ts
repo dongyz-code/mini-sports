@@ -3,57 +3,62 @@ import { WexinLocation } from './address';
 export interface Active {
   id: number;
   /** 封面 */
-  avator: string;
+  avatar: string;
   /** 标题 */
   title: string;
   /** 组织者类型 */
-  organizerType: number;
+  organizer_type?: 'people' | 'club';
   /** 地址信息 */
-  activeAddress: WexinLocation;
+  Address: WexinLocation;
   /** 场地号 */
-  venueNumber: string;
+  venue_number: string;
   /** 开始时间 */
-  startTime: string;
+  active_start_time: string;
   /** 结束时间 */
-  endTime: string;
+  active_end_time: string;
   /** 日期 */
-  date: number[];
+  active_date: string[];
   /** 取消报名时间 */
-  cancelDeadline: number;
+  registration_deadline: number;
   /** 简介 */
-  desc: string;
+  desc?: string;
   /** 图片 */
-  picture: string;
+  pictures?: string[];
   /** 报名人数 */
-  applyNumbers: number;
+  registration_count: number;
   /** 报名费用 */
-  applyFare: number;
+  registration_fee: number;
   /** 收费类型 */
-  chargeType: string;
+  charge_type: string;
   /** 女士优惠 */
-  ladyDiscount: boolean;
+  lady_discount: boolean;
   /** 等级女士 */
-  ladyLevel: number | null;
+  lady_level?: number | null;
   /** 等级男士 */
-  manLevel: number | null;
+  man_level?: number | null;
   /** 姓名 */
-  userName: string;
+  username: string;
   /** 电话 */
   phone: string;
   /** 微信 */
   weixin: string;
   /** 允许带人 */
-  withPeople: boolean;
+  allow_guests: boolean;
+  /** 最多允许携带的人数 */
+  max_guests: number;
   /** 自动取消 */
-  autoCancle: boolean;
+  auto_cancel: boolean;
   /** 前几个小时自动取消 */
-  dateLimit: number | null;
+  date_limit: number | null;
   /** 人数不足多少人取消活动 */
-  numbersLimit: number | null;
-  createTime: Date;
-  updateTime: Date;
+  numbers_limit: number | null;
+  create_time: Date;
+  update_time: Date;
   /** 组织者id */
   user_id: number | null;
 }
 
-export type CreateActive = Omit<Active, 'id'>;
+export type AddActiveParam = Omit<
+  Active,
+  'id' | 'user_id' | 'createTime' | 'updateTime' | 'create_time' | 'update_time' | 'user_id'
+>;

@@ -1,14 +1,15 @@
 .create-active {
   padding-bottom: 200rpx;
   overflow-x: hidden;
-  .avator-container {
+  .avatar-container {
     height: 450rpx;
   }
 }
 
 .label-150 {
   :global {
-    .nut-form-item__label {
+    .nut-form-item__label,
+    .nut-form-item-label {
       --nutui-form-item-label-width: max-content;
     }
   }

@@ -1,6 +1,6 @@
 import { Calendar, Cell, type CalendarProps } from '@nutui/nutui-react-taro';
 import { FC, useState } from 'react';
-import { RectRight } from '@nutui/icons-react-taro';
+import { ArrowSize8 } from '@nutui/icons-react-taro';
 import { View } from '@tarojs/components';
 import css from './index.module.scss';
 
@@ -48,7 +48,7 @@ const SelectCalendar: FC<SelectCalendarProps> = ({ value, onChange, type, title 
       <View className={css['select-cell']} onClick={() => setVisible(true)}>
         <View className={css['select-cell-value']}>{getDesc()}</View>
 
-        <RectRight className={css['select-cell-icon']} size={16} />
+        <ArrowSize8 className={css['select-cell-icon']} size={16} />
       </View>
 
       <Calendar

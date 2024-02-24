@@ -1,4 +1,4 @@
-export const organizerTypes = [
+export const organizer_types = [
   { text: '个人', value: 1 },
   { text: '俱乐部', value: 2 },
 ];
@@ -36,3 +36,10 @@ export const getOptionLabel = (value: any, options: { text: string; value: any }
   if (typeof value === 'undefined') return;
   return options.find(({ value: val }) => val === value)?.text;
 };
+
+export const takeLimit = [
+  { text: '无限', value: -1 },
+  ...Array(15)
+    .fill(0)
+    .map((_, i) => ({ text: String(i + 1), value: i + 1 })),
+];

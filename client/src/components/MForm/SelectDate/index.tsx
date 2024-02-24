@@ -1,7 +1,7 @@
 import { FC, useState } from 'react';
 import { Cell, DatePicker, type DatePickerProps } from '@nutui/nutui-react-taro';
 import { PickerOption } from '@nutui/nutui-react-taro/dist/types/packages/picker';
-import { RectRight } from '@nutui/icons-react-taro';
+import { ArrowSize8 } from '@nutui/icons-react-taro';
 import classNames from 'classnames';
 import css from './index.module.scss';
 
@@ -23,7 +23,7 @@ const SelectDate: FC<SelectDateFrops> = ({ value, onChange, title = '选择时�
         onClick={() => setVisible(true)}
         style={{ padding: 0 }}
         className={classNames({ [css['select-placeholder']]: !value })}
-        extra={<RectRight size={16} />}
+        extra={<ArrowSize8 size={16} />}
       ></Cell>
       <DatePicker
         {...rst}

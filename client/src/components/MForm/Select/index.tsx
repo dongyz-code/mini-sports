@@ -1,5 +1,5 @@
 import { FC, useEffect, useMemo, useState } from 'react';
-import { RectRight } from '@nutui/icons-react-taro';
+import { ArrowSize8 } from '@nutui/icons-react-taro';
 import { Cell, Picker } from '@nutui/nutui-react-taro';
 import { defaultFiledNames } from '@/constant/common';
 import type { FiledNames } from '@/types';
@@ -30,7 +30,11 @@ const VSelect: FC<SelectFrops> = ({ options, value, onChange, placeholder, field
 
   const title = useMemo(() => {
     if (mode === 'multiple') {
-      return `已选择${value.length || 0}项`;
+      if (value?.length) {
+        return '';
+      } else {
+        return `已选择${value.length || 0}项`;
+      }
     } else {
       return options?.find((item) => item[_fieldNames.value] === value)?.text;
     }
@@ -43,7 +47,7 @@ const VSelect: FC<SelectFrops> = ({ options, value, onChange, placeholder, field
           padding: 0,
         }}
         title={title || placeholder || ''}
-        extra={<RectRight size={16} />}
+        extra={<ArrowSize8 size={16} />}
         align="center"
         onClick={() => setVisible(!visible)}
       />

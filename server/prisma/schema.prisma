@@ -6,59 +6,60 @@ generator client {
 }
 
 datasource db {
-  provider = "mysql"
+  provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
 model User {
-  id       Int      @id @default(autoincrement())
-  username String?
+  id       String   @unique
+  username String
   email    String   @unique
   phone    String   @db.VarChar(64)
   weixin   String   @db.VarChar(64)
   level    Int?
   height   Int?
   weight   Int?
-  avator   String?  @db.VarChar(255)
+  avatar   String?  @db.VarChar(255)
   gender   gender?
   Active   Active[]
 }
 
 model Active {
-  id             Int            @id @default(autoincrement())
-  avator         String         @db.VarChar(255) // 封面
-  title          String         @db.VarChar(255) //标题
-  organizerType  Int            @db.SmallInt // 组织者类型
-  ActiveAddress  ActiveAddress?
-  venueNumber    String?        @db.VarChar(64) //场地号
-  startTime      DateTime // 活动开始时间
-  endTime        DateTime // 活动结束时间
-  date           DateTime // 活动日期
-  cancelDeadline Int? // 取消报名截止时间
-  desc           String         @db.Text
-  picture        String         @db.Text
-  applyNumbers   Int // 报名人数
-  applyFare      Int // 报名费用
-  chargeType     String // 收费类型
-  ladyDiscount   Boolean        @default(false) // 女士优惠
-  ladyLevel      Int? // 等级男
-  manLevel       Int? // 等级女
-  phone          String         @db.VarChar(64)
-  weixin         String         @db.VarChar(64)
-  withPeople     Boolean        @default(false) // 允许带人
-  autoCancle     Boolean        @default(false) // 自动取消
-  dateLimit      Int? // 开场前？个小时
-  numbersLimit   Int? // 人数不足？个人
-  createTime     DateTime       @default(now())
-  updateTime     DateTime       @updatedAt
-  Organizer      User?          @relation(fields: [organizerId], references: [id])
-  organizerId    Int?
+  id                    Int           @id @default(autoincrement())
+  avatar                String        @db.VarChar(255) // 封面
+  title                 String        @db.VarChar(255) // 标题
+  organizer_type        String        @default("people") // 组织者类型 club
+  address_id            Int           @unique
+  Address               ActiveAddress @relation(fields: [address_id], references: [id])
+  venue_number          String?       @db.VarChar(64) // 场地号
+  active_start_time     String // 活动开始时间
+  active_end_time       String[] // 活动结束时间
+  active_date           String[] // 活动日期
+  registration_deadline Int? // 取消报名截止时间
+  desc                  String        @db.Text
+  pictures              String        @db.Text
+  registration_count    Int // 报名人数
+  registration_fee      Int // 报名费用
+  charge_type           String // 收费类型
+  qr_code_image         String? // 二维码收款图片
+  lady_discount         Boolean       @default(false) // 女士优惠
+  lady_level            Int? // 等级男
+  man_level             Int? // 等级女
+  phone                 String        @db.VarChar(64)
+  weixin                String        @db.VarChar(64)
+  allow_guests          Boolean       @default(false) // 允许带人
+  max_guests            Int? // 带人限制(人数)
+  auto_cancel           Boolean       @default(false) // 自动取消
+  date_limit            Int? // 开场前？个小时
+  numbers_limit         Int? // 人数不足？个人
+  create_time           DateTime      @default(now())
+  update_time           DateTime      @updatedAt
+  user_id               String
+  CreateBy              User?          @relation(fields: [user_id], references: [id])
 }
 
 model ActiveAddress {
-  id        Int    @id @default(autoincrement())
-  activeId  Int    @unique
-  active    Active @relation(fields: [activeId], references: [id])
+  id        Int     @id @default(autoincrement())
   name      String
   latitude  Int
   longitude Int
@@ -66,6 +67,7 @@ model ActiveAddress {
   province  String
   city      String
   district  String
+  active    Active?
 }
 
 enum gender {

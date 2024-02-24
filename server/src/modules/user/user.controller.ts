@@ -8,6 +8,6 @@ export class UserController {
 
   @Get('user/:id')
   async getPostById(@Param('id') id: string): Promise<UserModel> {
-    return this.userService.user({ id: Number(id) });
+    return this.userService.user({ id });
   }
 }

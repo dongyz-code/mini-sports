@@ -13,7 +13,7 @@ import {
   HttpStatus,
 } from '@nestjs/common';
 import { ActiveService } from './active.service';
-import { Active as ActiveModel } from '@prisma/client';
+import { Active as ActiveModel, Prisma } from '@prisma/client';
 
 @Controller()
 export class ActiveController {
@@ -41,12 +41,20 @@ export class ActiveController {
   }
 
   @Post('active')
-  async createActive(@Body() body: ActiveModel) {
+  async createActive(@Body() body: Prisma.ActiveCreateInput) {
+    console.log(body);
     return this.activeService.createActive(body);
   }
 
   @Put('active')
   async updateActive(@Body() body: ActiveModel) {
     return;
+  }
+
+  @Delete('active')
+  async deleteActive(@Body() body: ActiveModel) {
+    return this.activeService.deleteActive({
+      id: body.id,
+    });
   }
 }

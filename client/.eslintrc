@@ -12,6 +12,7 @@
     "react/jsx-uses-react": "off",
     "react/react-in-jsx-scope": "off",
     "quotes": ["error", "single"],
-    "import/no-commonjs": "off"
+    "import/no-commonjs": "off",
+    "@typescript-eslint/no-shadow": "off"
   }
 }
