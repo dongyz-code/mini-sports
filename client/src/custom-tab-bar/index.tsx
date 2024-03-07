@@ -1,22 +1,27 @@
-import { FC } from 'react';
-import Taro from '@tarojs/taro';
+import { FC, useEffect } from 'react';
+import Taro, { useRouter } from '@tarojs/taro';
 import { View } from '@tarojs/components';
-import { useTabBarSotre, TabBar } from '@/model';
+import { useTabBarStore, TabBar } from '@/model';
 import classNames from 'classnames';
 import IconFont from '@/components/iconfont';
 import css from './index.module.scss';
 
 const CustomTabBar: FC = () => {
-  const tabBarStore = useTabBarSotre();
+  const tabBarStore = useTabBarStore();
+  const router = useRouter();
 
   const changeTab = (tab: TabBar) => {
     if (!tab) return;
     if (tabBarStore.selected === tab.key) return;
-    tabBarStore.changeTab(tab.key);
     Taro.switchTab({
       url: tab.pagePath,
     });
   };
+
+  useEffect(() => {
+    tabBarStore.changeTabByPath(router.path);
+  }, []);
+
   return (
     <View className={css['tab-bar']}>
       {tabBarStore.tabs.map((tab) => (
@@ -30,7 +35,7 @@ const CustomTabBar: FC = () => {
           <View className={css['icon']}>
             {tab.iconPath && <IconFont name={tab.iconPath} size={tab.key === '2' ? 64 : 48} color="#000000" />}
           </View>
-          {tab.text && <View className="text">{tab.text}</View>}
+          {tab.text && <View className={css['text']}>{tab.text}</View>}
         </View>
       ))}
     </View>

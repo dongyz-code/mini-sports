@@ -14,3 +14,11 @@ export interface WeixinFileUplaodUrl {
   file_id: string;
   cos_file_id: string;
 }
+
+export interface WeixinLoginResponse {
+  openid: string;
+  session_key: string;
+  unionid: string;
+  errcode: number;
+  errmsg: string;
+}

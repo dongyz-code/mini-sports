@@ -6,5 +6,10 @@
 
   .tab-bar-item {
     font-size: 24px;
+    padding: 0 24px;
+
+    &.active-tab {
+      color: var(--color-primary);
+    }
   }
 }

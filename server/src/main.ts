@@ -8,6 +8,7 @@ async function bootstrap() {
   try {
     const app = await NestFactory.create(AppModule);
 
+    app.setGlobalPrefix('api');
     app.useGlobalInterceptors(new TransformInterceptor());
     app.useGlobalFilters(new HttpExceptionFilter());
 

@@ -1,0 +1,13 @@
+.login {
+  position: relative;
+  height: 100vh;
+
+  .login-btn {
+    position: absolute;
+    bottom: 100px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 72px;
+  }
+}

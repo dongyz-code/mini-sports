@@ -12,10 +12,6 @@ export default function Index() {
     setTabKey(id);
   };
 
-  useLoad(() => {
-    console.log('Page loaded.');
-  });
-
   return (
     <View className={css['home']}>
       {/* 轮播模块 */}

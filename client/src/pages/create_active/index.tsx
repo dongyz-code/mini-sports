@@ -1,26 +1,27 @@
 import Taro from '@tarojs/taro';
 import { useState } from 'react';
 import { useMount } from 'ahooks';
+import { omit } from 'lodash-es';
 import { View } from '@tarojs/components';
 import { Form, FormItem, Button, Input, TextArea, Switch, InputNumber } from '@nutui/nutui-react-taro';
+import Layout from '@/components/Layout';
 import ImageUpload from '@/components/ImageUpload';
 import MapChoosePoint from '@/components/ChooseLocation';
 import SelectDate from '@/components/MForm/SelectDate';
 import { cancelDeadlines, chargeTypes, takeLimit } from '@/constant';
 import { MSelectCalendar, MSelect, MUpload } from '@/components/MForm';
 import { httpCreateActive } from '@/services';
-import Layout from '@/components/Layout';
 import { FileItem } from '@/components/MForm/Upload/types';
 import { AddActiveParam } from '@/types';
 import css from './index.module.scss';
 
-type AddActiveForm = Omit<AddActiveParam, 'active_start_time' | 'active_end_time' | 'pictures'> & {
+type ActiveForm = Omit<AddActiveParam, 'active_start_time' | 'active_end_time' | 'pictures'> & {
   active_start_time: [string, string];
   active_end_time: [string, string];
   pictures: FileItem[];
 };
 
-const initialValue: AddActiveForm = {
+const initialValue: ActiveForm = {
   avatar:
     'https://ts1.cn.mm.bing.net/th/id/R-C.9e45a633e95179a37c907fa2797999ad?rik=aMuPS4TunAh5ZA&riu=http%3a%2f%2fwww.quazero.com%2fuploads%2fallimg%2f140303%2f1-140303214Q2.jpg&ehk=P%2firfYpARc1fHht%2bWpapYR4W15p6SLABE8CBexoeon4%3d&risl=&pid=ImgRaw&r=0',
   title: '这是一个活动',
@@ -33,8 +34,7 @@ const initialValue: AddActiveForm = {
   desc: '活动描述',
   registration_count: 12,
   registration_fee: 120,
-  Address: {
-    errMsg: 'chooseLocation:ok',
+  address: {
     name: '朝阳区人民政府(神路街西)',
     address: '北京市朝阳区日坛北路33号',
     latitude: 39.9219,
@@ -55,12 +55,7 @@ const initialValue: AddActiveForm = {
   username: '董昱泽',
   phone: '16609950990',
   weixin: '16609950990',
-};
-
-type ActiveForm = Omit<AddActiveParam, 'pictures' | 'active_start_time' | 'active_end_time'> & {
-  pictures?: FileItem[];
-  active_start_time: [number, number];
-  active_end_time: [number, number];
+  organizer_type: 'people',
 };
 
 const CreateActive = () => {
@@ -78,7 +73,6 @@ const CreateActive = () => {
     try {
       setLoading(true);
       const param = handleAddParams(active);
-      console.log('params', param);
 
       const res = await httpCreateActive(param);
 
@@ -88,6 +82,10 @@ const CreateActive = () => {
           icon: 'success',
         });
       } else {
+        Taro.showToast({
+          title: res.message,
+          icon: 'error',
+        });
       }
     } finally {
       setLoading(false);
@@ -103,11 +101,13 @@ const CreateActive = () => {
       registration_count,
       date_limit,
       numbers_limit,
+      address,
       ...rest
     } = active;
 
     return {
       ...rest,
+      address: omit(address, 'errMsg'),
       pictures: pictures?.map((p) => p.url!).filter(Boolean),
       active_start_time: active_start_time?.join(':'),
       active_end_time: active_end_time?.join(':'),
@@ -140,7 +140,7 @@ const CreateActive = () => {
           <Input placeholder="请输入标题" />
         </FormItem>
 
-        <Form.Item name="Address" label="活动地点" rules={[{ required: true }]}>
+        <Form.Item name="address" label="活动地点" rules={[{ required: true }]}>
           <MapChoosePoint />
         </Form.Item>
 

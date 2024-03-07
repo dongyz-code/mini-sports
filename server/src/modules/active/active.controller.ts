@@ -14,6 +14,8 @@ import {
 } from '@nestjs/common';
 import { ActiveService } from './active.service';
 import { Active as ActiveModel, Prisma } from '@prisma/client';
+import { UserId } from 'src/common/decorators';
+import { CreateActiveDto } from './dto/CreateActive.dto';
 
 @Controller()
 export class ActiveController {
@@ -26,7 +28,6 @@ export class ActiveController {
     });
   }
 
-  @Header('a', 'b')
   @Get('actives')
   async getActives(
     @Query() query: Record<string, string>,
@@ -41,9 +42,23 @@ export class ActiveController {
   }
 
   @Post('active')
-  async createActive(@Body() body: Prisma.ActiveCreateInput) {
-    console.log(body);
-    return this.activeService.createActive(body);
+  async createActive(@Body() body: CreateActiveDto, @UserId() user_id: string) {
+    const { address, ...active } = body;
+
+    return this.activeService.createActive({
+      organizer_type: 'people',
+      ...active,
+      CreateBy: {
+        connect: {
+          user_id: user_id,
+        },
+      },
+      Address: {
+        create: {
+          ...address,
+        },
+      },
+    });
   }
 
   @Put('active')

@@ -4,7 +4,7 @@ import { Res, AddActiveParam } from '@/types';
 export async function httpCreateActive(active: AddActiveParam) {
   const res = await request<Res<unknown>>({
     method: 'POST',
-    url: '/active',
+    url: '/api/active',
     data: active,
   });
 

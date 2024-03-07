@@ -1,5 +1,6 @@
 import { View } from '@tarojs/components';
 import { FC } from 'react';
+import LoginModal from './components/LoginModal';
 import css from './index.module.scss';
 
 interface LayoutProps {
@@ -7,7 +8,12 @@ interface LayoutProps {
 }
 
 const Layout: FC<LayoutProps> = ({ children }) => {
-  return <View className={css['base-layout']}>{children}</View>;
+  return (
+    <View className={css['base-layout']}>
+      <View>{children}</View>
+      <LoginModal />
+    </View>
+  );
 };
 
 export default Layout;

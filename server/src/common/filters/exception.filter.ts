@@ -10,9 +10,9 @@ export class HttpExceptionFilter implements ExceptionFilter {
     const request = ctx.getRequest<Request>();
     const status = exception.getStatus();
     // 用于接收主动发错的错误信息
-    const { message, code } = exception.getResponse() as any;
+    const message = exception.getResponse();
     response.status(200).json({
-      code: code || status,
+      code: status,
       timestamp: Date.now(),
       path: request.url,
       message,

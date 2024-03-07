@@ -57,7 +57,7 @@ export class WeixinService {
         access_token: access_token.access_token,
       },
       data: {
-        env: this.configService.get('server_env'),
+        env: this.configService.get('SERVER_ENV'),
         path: filePath,
       },
     });

@@ -10,15 +10,16 @@ export interface TabBar {
   selectedIconPath?: IconNames;
 }
 
-interface TabBarSotre {
+interface TabBarStore {
   selected: Key;
   color: string;
   selectedColor: string;
   tabs: TabBar[];
-  changeTab: (selected: string) => void;
+  changeTabByKey: (key: string) => void;
+  changeTabByPath: (path: string) => void;
 }
 
-export const useTabBarSotre = create<TabBarSotre>((set) => {
+export const useTabBarStore = create<TabBarStore>((set) => {
   return {
     selected: '1',
     color: '#000000',
@@ -29,10 +30,21 @@ export const useTabBarSotre = create<TabBarSotre>((set) => {
       { key: '3', pagePath: '/pages/my/index', text: '我的', iconPath: 'my_fill_light' },
     ],
 
-    changeTab: (selected: string) => {
+    changeTabByKey: (key: string) => {
       set({
-        selected,
+        selected: key,
       });
+    },
+
+    changeTabByPath(path: string) {
+      path = '/' + path.replace(/^\//, '');
+      const tabs = useTabBarStore.getState().tabs;
+      const currTab = tabs?.find((tab) => tab.pagePath === path);
+      if (currTab) {
+        set({
+          selected: currTab.key,
+        });
+      }
     },
   };
 });

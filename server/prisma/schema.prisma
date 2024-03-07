@@ -11,17 +11,28 @@ datasource db {
 }
 
 model User {
-  id       String   @unique
-  username String
-  email    String   @unique
-  phone    String   @db.VarChar(64)
-  weixin   String   @db.VarChar(64)
-  level    Int?
-  height   Int?
-  weight   Int?
-  avatar   String?  @db.VarChar(255)
-  gender   gender?
-  Active   Active[]
+  user_id     String      @id @default(uuid())
+  open_id     String?     @unique
+  username    String
+  avatar      String      @db.VarChar(255)
+  phone       String?     @unique @db.VarChar(64)
+  email       String?     @unique
+  weixin      String?     @db.VarChar(64)
+  level       Int?
+  height      Int?
+  weight      Int?
+  gender      gender?
+  update_time DateTime    @updatedAt
+  Active      Active[]
+  WeixinUser  WeixinUser? @relation(fields: [open_id], references: [open_id])
+}
+
+model WeixinUser {
+  open_id          String   @id @db.VarChar(64)
+  session_key      String   @db.VarChar(64)
+  unionid          String?  @db.VarChar(64)
+  session_key_time DateTime
+  User             User?
 }
 
 model Active {
@@ -33,40 +44,41 @@ model Active {
   Address               ActiveAddress @relation(fields: [address_id], references: [id])
   venue_number          String?       @db.VarChar(64) // 场地号
   active_start_time     String // 活动开始时间
-  active_end_time       String[] // 活动结束时间
+  active_end_time       String? // 活动结束时间
   active_date           String[] // 活动日期
   registration_deadline Int? // 取消报名截止时间
-  desc                  String        @db.Text
-  pictures              String        @db.Text
-  registration_count    Int // 报名人数
-  registration_fee      Int // 报名费用
+  desc                  String?       @db.Text
+  pictures              String[]
+  registration_count    Int           @db.Integer // 最多报名人数
+  registration_fee      Decimal       @db.Money // 报名费用
   charge_type           String // 收费类型
   qr_code_image         String? // 二维码收款图片
   lady_discount         Boolean       @default(false) // 女士优惠
   lady_level            Int? // 等级男
   man_level             Int? // 等级女
-  phone                 String        @db.VarChar(64)
-  weixin                String        @db.VarChar(64)
   allow_guests          Boolean       @default(false) // 允许带人
   max_guests            Int? // 带人限制(人数)
   auto_cancel           Boolean       @default(false) // 自动取消
   date_limit            Int? // 开场前？个小时
   numbers_limit         Int? // 人数不足？个人
+  username              String        @db.VarChar(32) // 联系人
+  phone                 String        @db.VarChar(64) // 联系电话
+  weixin                String        @db.VarChar(64) // 联系微信
   create_time           DateTime      @default(now())
   update_time           DateTime      @updatedAt
   user_id               String
-  CreateBy              User?          @relation(fields: [user_id], references: [id])
+  CreateBy              User          @relation(fields: [user_id], references: [open_id])
 }
 
 model ActiveAddress {
   id        Int     @id @default(autoincrement())
-  name      String
-  latitude  Int
-  longitude Int
-  address   String
-  province  String
-  city      String
-  district  String
+  name      String  @db.VarChar(255)
+  latitude  Float   @db.DoublePrecision()
+  longitude Float   @db.DoublePrecision()
+  address   String  @db.Text()
+  province  String?
+  city      String?
+  district  String?
   active    Active?
 }
 

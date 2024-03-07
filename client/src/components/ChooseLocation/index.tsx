@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { View, Text, Input } from '@tarojs/components';
+import { View, Text } from '@tarojs/components';
 import Taro from '@tarojs/taro';
 import classNames from 'classnames';
 import { WexinLocation } from '@/types';
