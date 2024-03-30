@@ -16,6 +16,8 @@ import { ActiveService } from './active.service';
 import { Active as ActiveModel, Prisma } from '@prisma/client';
 import { UserId } from 'src/common/decorators';
 import { CreateActiveDto } from './dto/CreateActive.dto';
+import { UpdateActiveDto } from './dto/UpdateActive.dto';
+import { GetActivesDto } from './dto/GetActives.dto';
 
 @Controller()
 export class ActiveController {
@@ -29,16 +31,49 @@ export class ActiveController {
   }
 
   @Get('actives')
-  async getActives(
-    @Query() query: Record<string, string>,
-    @Headers() header: Record<string, any>,
-    @Headers('accept-encoding') acceptEncoding: string,
-  ) {
-    console.log('query', query);
-    console.log('header', header);
-    console.log('acceptEncoding', acceptEncoding);
-    throw new HttpException('Forbidden', HttpStatus.FORBIDDEN);
-    return '999';
+  async getActives(@Query() query: GetActivesDto) {
+    const whereInput: Prisma.ActiveWhereInput = {};
+    const orderInput: Prisma.ActiveOrderByWithRelationInput = {
+      create_time: 'desc',
+    };
+
+    query.title = query.title.trim();
+    if (query.title) {
+      whereInput.title = {
+        contains: query.title,
+      };
+    }
+
+    if (query.date) {
+      whereInput.active_date = {
+        has: query.date,
+      };
+    }
+
+    if (query.sport_type) {
+      whereInput.sport_type = query.sport_type;
+    }
+
+    if (query.city) {
+      whereInput.Address.city = query.city;
+    }
+
+    if (query.district) {
+      whereInput.Address.district = query.district;
+    }
+
+    // if (query.sort) {
+    // }
+
+    const { page = '1', size = '20' } = query;
+    const take = Number(size);
+    const skip = (Number(page) - 1) * take;
+    return this.activeService.actives({
+      where: whereInput,
+      orderBy: orderInput,
+      take: take,
+      skip: skip,
+    });
   }
 
   @Post('active')
@@ -48,6 +83,7 @@ export class ActiveController {
     return this.activeService.createActive({
       organizer_type: 'people',
       ...active,
+      sport_type: 'ping_pang',
       CreateBy: {
         connect: {
           user_id: user_id,
@@ -62,14 +98,32 @@ export class ActiveController {
   }
 
   @Put('active')
-  async updateActive(@Body() body: ActiveModel) {
-    return;
+  async updateActive(@Body() body: UpdateActiveDto, @UserId() user_id: string) {
+    const { id, address, ...active } = body;
+    return this.activeService.updateActive({
+      where: {
+        id: Number(id),
+      },
+      data: {
+        ...active,
+        CreateBy: {
+          connect: {
+            user_id: user_id,
+          },
+        },
+        Address: {
+          create: {
+            ...address,
+          },
+        },
+      },
+    });
   }
 
-  @Delete('active')
-  async deleteActive(@Body() body: ActiveModel) {
+  @Delete('active/:id')
+  async deleteActive(@Param() id: string) {
     return this.activeService.deleteActive({
-      id: body.id,
+      id: Number(id),
     });
   }
 }

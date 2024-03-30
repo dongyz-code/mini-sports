@@ -5,7 +5,7 @@ export interface WeixinAccessToken {
 }
 
 /** 微信获取上传文件url响应值 */
-export interface WeixinFileUplaodUrl {
+export interface WeixinFileUploadUrl {
   errcode: number;
   errmsg: string;
   url: string;

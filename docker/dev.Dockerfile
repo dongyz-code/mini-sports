@@ -9,7 +9,7 @@ RUN npm config set registry https://registry.npmmirror.com
 
 RUN npm install
 
-COPY . .
+COPY ../server/docker .
 
 RUN npm run db:generate
 
@@ -27,7 +27,7 @@ WORKDIR /app
 
 RUN npm config set registry https://registry.npmmirror.com
 
-RUN  npm install --production
+RUN npm install --production
 
 COPY --from=build-stage /app/node_modules/.prisma ./node_modules/.prisma
 

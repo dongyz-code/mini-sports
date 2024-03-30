@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import { WeixinAccessToken, WeixinFileUplaodUrl } from 'src/types';
+import { WeixinAccessToken, WeixinFileUploadUrl } from 'src/types';
 import { request } from 'src/utils';
 
 @Injectable()
@@ -50,7 +50,7 @@ export class WeixinService {
 
     const access_token = await this.getWeixinAccessToken();
 
-    const res = await request<WeixinFileUplaodUrl>({
+    const res = await request<WeixinFileUploadUrl>({
       url: this.url.getUploadUrl,
       method: 'POST',
       params: {

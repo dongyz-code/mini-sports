@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, Image, Swiper, SwiperItem } from '@tarojs/components';
-import { useLoad } from '@tarojs/taro';
 import { homeBanners, sportsTabs } from '@/config';
-import clsssNames from 'classnames';
+import classNames from 'classnames';
 import css from './index.module.scss';
 
 export default function Index() {
@@ -34,9 +33,9 @@ export default function Index() {
             <Text
               key={tab.id}
               onClick={() => onChangeTabs(tab.id)}
-              className={clsssNames(css['tabs-item'], { [css.active]: tabKey === tab.id })}
+              className={classNames(css['tabs-item'], { [css.active]: tabKey === tab.id })}
             >
-              <Text className={clsssNames('iconfont', tab.icon, css['tab-icon'])}></Text>
+              <Text className={classNames('iconfont', tab.icon, css['tab-icon'])}></Text>
               <Text>{tab.title}</Text>
             </Text>
           ))}
@@ -44,6 +43,7 @@ export default function Index() {
       </View>
 
       {/* 活动列表 */}
+      <View className={css['activity-list']}></View>
     </View>
   );
 }

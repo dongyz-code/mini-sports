@@ -37,6 +37,7 @@ model WeixinUser {
 
 model Active {
   id                    Int           @id @default(autoincrement())
+  sport_type            String        @db.VarChar(50) // 运动类型
   avatar                String        @db.VarChar(255) // 封面
   title                 String        @db.VarChar(255) // 标题
   organizer_type        String        @default("people") // 组织者类型 club
@@ -80,6 +81,14 @@ model ActiveAddress {
   city      String?
   district  String?
   active    Active?
+}
+
+model ChinaLocation {
+  code      String  @id @db.VarChar(32)
+  pid       String? @db.VarChar(32)
+  name      String  @db.VarChar(62)
+  latitude  Float   @db.DoublePrecision()
+  longitude Float   @db.DoublePrecision()
 }
 
 enum gender {

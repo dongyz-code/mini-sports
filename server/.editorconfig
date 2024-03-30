@@ -2,9 +2,9 @@ root = true
 
 [*]
 charset = utf-8
-end_of_line = \n
+end_of_line = cr
 insert_final_newline = true
 
-[*.{ts, js}]
+[*.{ts,js}]
 indent_size = 2
 indent_style = space

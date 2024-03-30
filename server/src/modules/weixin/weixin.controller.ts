@@ -1,6 +1,6 @@
 import { Controller, Get, Post, Body } from '@nestjs/common';
 import { WeixinService } from './weixin.service';
-import { WeixinAccessToken, WeixinFileUplaodUrl } from 'src/types';
+import { WeixinAccessToken, WeixinFileUploadUrl } from 'src/types';
 import { GetUploadUrlParamsDto } from './dto/GetUploadUrl.dto';
 
 @Controller('weixin')
@@ -13,7 +13,7 @@ export class WeixinController {
   }
 
   @Post('upload-url')
-  async getWeixinUploadUrl(@Body() { filePath }: GetUploadUrlParamsDto): Promise<WeixinFileUplaodUrl> {
+  async getWeixinUploadUrl(@Body() { filePath }: GetUploadUrlParamsDto): Promise<WeixinFileUploadUrl> {
     return this.weixinService.getFileUploadUrl(filePath);
   }
 }

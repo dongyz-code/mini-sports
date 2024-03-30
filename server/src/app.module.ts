@@ -1,9 +1,12 @@
 import { Module, ValidationPipe } from '@nestjs/common';
 import { JwtModule } from '@nestjs/jwt';
-import { PrismaModule } from './db';
+import { ScheduleModule } from '@nestjs/schedule';
+import { PrismaModule, RedisModule } from './db';
 import { ActiveModule } from './modules/active/active.module';
 import { UserModule } from './modules/user/user.module';
 import { WeixinModule } from './modules/weixin/weixin.module';
+import { CommonModule } from './modules/common/common.module';
+import { TasksModule } from './modules/tasks/tasks.module';
 import { AuthGuard } from './common/guard';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { APP_GUARD, APP_PIPE } from '@nestjs/core';
@@ -27,10 +30,14 @@ import { APP_GUARD, APP_PIPE } from '@nestjs/core';
       },
       inject: [ConfigService],
     }),
-    ActiveModule,
+    ScheduleModule.forRoot(),
     PrismaModule,
+    RedisModule,
+    ActiveModule,
     UserModule,
     WeixinModule,
+    TasksModule,
+    CommonModule,
   ],
 
   providers: [
